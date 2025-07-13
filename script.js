@@ -55,41 +55,25 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Animate elements on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+// Disable problematic scroll animations that hide content
+// Elements should be visible by default without needing intersection observer
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animated');
-        }
-    });
-}, observerOptions);
+// Add animate-on-scroll class to elements (DISABLED - causing visibility issues)
+// document.addEventListener('DOMContentLoaded', () => {
+//     const elementsToAnimate = [
+//         '.feature-card',
+//         '.testimonial-card',
+//         '.pricing-card',
+//         '.hero-content',
+//         '.hero-visual'
+//     ];
 
-// Observe all elements with animate-on-scroll class
-document.querySelectorAll('.animate-on-scroll').forEach(el => {
-    observer.observe(el);
-});
-
-// Add animate-on-scroll class to elements
-document.addEventListener('DOMContentLoaded', () => {
-    const elementsToAnimate = [
-        '.feature-card',
-        '.testimonial-card',
-        '.pricing-card',
-        '.hero-content',
-        '.hero-visual'
-    ];
-
-    elementsToAnimate.forEach(selector => {
-        document.querySelectorAll(selector).forEach(el => {
-            el.classList.add('animate-on-scroll');
-        });
-    });
-});
+//     elementsToAnimate.forEach(selector => {
+//         document.querySelectorAll(selector).forEach(el => {
+//             el.classList.add('animate-on-scroll');
+//         });
+//     });
+// });
 
 // Interactive chart bars animation
 function animateChartBars() {
