@@ -198,16 +198,23 @@ document.querySelectorAll('.feature-card').forEach(card => {
     });
 });
 
-// Lazy loading for images (if any are added later)
+// Lazy loading for images (only for images with lazy class and data-src)
 const imageObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const img = entry.target;
-            img.src = img.dataset.src;
-            img.classList.remove('lazy');
+            if (img.dataset.src && img.classList.contains('lazy')) {
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+            }
             imageObserver.unobserve(img);
         }
     });
+});
+
+// Only observe images that actually have lazy loading setup
+document.querySelectorAll('img.lazy[data-src]').forEach(img => {
+    imageObserver.observe(img);
 });
 
 // Initialize tooltips or popovers (if needed later)
