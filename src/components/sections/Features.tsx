@@ -4,7 +4,7 @@ import { FEATURES } from '@/lib/constants';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import * as LucideIcons from 'lucide-react';
 
-const iconMap: Record<string, React.ComponentType> = {
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   'chart-area': LucideIcons.TrendingUp,
   'robot': LucideIcons.Bot,
   'bullseye': LucideIcons.Target,
